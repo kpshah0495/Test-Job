@@ -8,10 +8,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+from pyvirtualdisplay import Display
 import time
 import requests
 import json
 import pickle
+
+display = Display(visible=False, size=(800, 600))
+display.start()
 
 header= {"Authorization": "Bearer " + "keynRNfKupAXaHbAO"}
 response = requests.get("https://api.airtable.com/v0/appOJoA8DZDOHUgmd/Positions/", headers=header)
@@ -183,5 +187,5 @@ for i in range(len(data)):
     time.sleep(5)
 
     browser.close()
-
+display.stop()
 print("Indeed Auto-Post Done Successfully")
