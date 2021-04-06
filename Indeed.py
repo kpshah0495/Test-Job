@@ -57,7 +57,7 @@ for i in range(len(data)):
 
 
     time.sleep(5)
-    W(browser, 20).until(EC.element_to_be_clickable((By.XPATH, ''//*[@id="hireHeroPostJobButton"]''))).click()
+    W(browser, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hireHeroPostJobButton"]'))).click()
 
     #browser.find_element_by_xpath('//*[@id="hireHeroPostJobButton"]').click()
 
