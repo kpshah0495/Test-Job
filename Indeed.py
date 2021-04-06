@@ -56,10 +56,18 @@ for i in range(len(data)):
     action = ActionChains(browser)
 
 
-    time.sleep(5)
-    W(browser, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hireHeroPostJobButton"]'))).click()
-
+    #time.sleep(5)
+    
+    #W(browser, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hireHeroPostJobButton"]'))).click()
     #browser.find_element_by_xpath('//*[@id="hireHeroPostJobButton"]').click()
+    
+    time.sleep(5)
+    
+    browser.find_element_by_xpath('/html/body/nav/div/div[1]/div/div[3]/div[1]/a').click()
+    
+    time.sleep(5)
+    
+    browser.find_element_by_xpath('//*[@id="postJobButton"]').click()
 
     time.sleep(5)
 
