@@ -1,0 +1,56 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Upgrade chromedriver
+      run: |
+        sudo apt-get update
+        sudo apt-get upgrade google-chrome-stable -y
+        CHROME_VERSION=$(google-chrome --product-version)
+        CHROME_VERSION=${CHROME_VERSION%.*}
+        # Determine latest release of chromedriver
+        # Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
+        LATEST_CHROMEDRIVER_VERSION=$(curl "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        # Download and unpack latest release of chromedriver
+        echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
+        wget "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        unzip chromedriver_linux64.zip
+        rm chromedriver_linux64.zip
+        CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
+        CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
+        sudo rm -rf $CHROMEDRIVER_DIR/*
+        sudo rm -rf $CHROMEDRIVER_BIN/*
+        sudo mkdir -p $CHROMEDRIVER_DIR
+        sudo mv "chromedriver" $CHROMEDRIVER_BIN
+        sudo chmod +x $CHROMEDRIVER_BIN
+        chromedriver --version
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: execute py script 
+      run: |
+        python Hirist.py
+
