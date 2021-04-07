@@ -35,6 +35,7 @@ for i in range(len(data)):
     options.headless = True
     options.add_argument(f'user-agent={user_agent}')
     options.add_argument("--window-size=1200,1040")
+    options.add_argument("--allow-insecure-localhost")
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--allow-running-insecure-content')
     options.add_argument("--disable-extensions")
@@ -73,7 +74,7 @@ for i in range(len(data)):
 #     print(handles)
     
 
-    time.sleep(20)
+    time.sleep(5)
     
     browser.save_screenshot("sample.png")
 
