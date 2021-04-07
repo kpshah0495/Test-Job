@@ -68,11 +68,14 @@ for i in range(len(data)):
     time.sleep(5)
     
     browser.find_element_by_xpath('//*[@id="postJobButton"]').click()
-    handles = browser.window_handles
-    print(handles)
+    
+#     handles = browser.window_handles
+#     print(handles)
     
 
     time.sleep(20)
+    
+    browser.save_screenshot("sample.png")
 
     indeed_job_title_xpath = '//*[@id="JobTitle"]'
     indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
