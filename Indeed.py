@@ -47,7 +47,7 @@ for i in range(len(data)):
     browser = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 
-    browser.maximize_window()
+    #browser.maximize_window()
     browser.get('https://www.indeed.com/hire')
     cookies = pickle.load(open("cookies.pkl", "rb"))
     for cookie in cookies:
@@ -71,9 +71,11 @@ for i in range(len(data)):
 
     time.sleep(5)
 
-    indeed_job_title_xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div[3]/div[1]/div[3]/div[3]/div/div/div/div/div/div[2]/div/div/div[4]/div/div/div/div/div/div/div/div/div[2]/input'
-    indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
-    indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_xpath = '//*[@id="JobTitle"]'
+    #indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
+    #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    
+    browser.find_element_by_xpath('//*[@id="JobTitle"]').send_keys(data[i]['fields']['Position Name']);
 
     time.sleep(2)
 
