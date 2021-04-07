@@ -84,7 +84,7 @@ for i in range(len(data)):
     #e.send_keys(data[i]['fields']['Position Name']);
     #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
     
-    element = W(broswer, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="JobTitle"]')))
+    element = W(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="JobTitle"]')))
     element.send_keys(data[i]['fields']['Position Name']);
     
     #browser.find_element_by_xpath('//*[@id="plugin_container_CoreFunnel_JobTitleContainer"]/div/div/div/div/div/div/div/div[2]').send_keys(data[i]['fields']['Position Name']);
