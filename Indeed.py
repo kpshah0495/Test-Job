@@ -78,9 +78,10 @@ for i in range(len(data)):
     
     browser.save_screenshot("sample.png")
 
-    indeed_job_title_xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div[3]/div[1]/div[3]/div[3]/div/div/div/div/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/div/div/div/div[2]/input'
-    indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
-    indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div[3]/div[1]/div[3]/div[3]/div/div/div/div/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/div/div/div/div[2]/input'
+    #indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
+    browser.find_element_by_css_selector('input.JobTitle).send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
     
     #browser.find_element_by_xpath('//*[@id="plugin_container_CoreFunnel_JobTitleContainer"]/div/div/div/div/div/div/div/div[2]').send_keys(data[i]['fields']['Position Name']);
 
