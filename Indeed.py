@@ -30,7 +30,7 @@ for i in range(len(copy_data)):
     if '[Confirmation] Auto-posted' in j:
         data.remove(data[i])
 for i in range(len(data)):
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389 Safari/537.36"
     options = webdriver.ChromeOptions()
     options.headless = True
     options.add_argument(f'user-agent={user_agent}')
