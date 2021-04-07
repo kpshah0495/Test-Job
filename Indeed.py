@@ -68,6 +68,9 @@ for i in range(len(data)):
     time.sleep(5)
     
     browser.find_element_by_xpath('//*[@id="postJobButton"]').click()
+    handles = browser.window_handles
+    print(handles)
+    
 
     time.sleep(5)
 
