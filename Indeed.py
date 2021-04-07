@@ -78,7 +78,7 @@ for i in range(len(data)):
     #indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
     #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
     
-    browser.find_element_by_id('JobTitle').send_keys(data[i]['fields']['Position Name']);
+    browser.find_element_by_xpath('//*[@id="plugin_container_CoreFunnel_JobTitleContainer"]/div/div/div/div/div/div/div/div[2]').send_keys(data[i]['fields']['Position Name']);
 
     #time.sleep(2)
 
