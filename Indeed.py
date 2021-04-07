@@ -8,10 +8,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+#from pyvirtualdisplay import Display
 import time
 import requests
 import json
 import pickle
+
+#display = Display(visible=False, size=(800, 600))
+#display.start()
 
 header= {"Authorization": "Bearer " + "keynRNfKupAXaHbAO"}
 response = requests.get("https://api.airtable.com/v0/appOJoA8DZDOHUgmd/Positions/", headers=header)
@@ -43,7 +47,7 @@ for i in range(len(data)):
     browser = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 
-    browser.maximize_window()
+    #browser.maximize_window()
     browser.get('https://www.indeed.com/hire')
     cookies = pickle.load(open("cookies.pkl", "rb"))
     for cookie in cookies:
@@ -52,17 +56,31 @@ for i in range(len(data)):
     action = ActionChains(browser)
 
 
-    time.sleep(3)
-
-    browser.find_element_by_xpath('//*[@id="hireHeroPostJobButton"]').click()
+    #time.sleep(5)
+    
+    #W(browser, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="hireHeroPostJobButton"]'))).click()
+    #browser.find_element_by_xpath('//*[@id="hireHeroPostJobButton"]').click()
+    
+    time.sleep(5)
+    
+    browser.find_element_by_xpath('/html/body/nav/div/div[1]/div/div[3]/div[1]/a').click()
+    
+    time.sleep(5)
+    
+    browser.find_element_by_xpath('//*[@id="postJobButton"]').click()
+    handles = browser.window_handles
+    print(handles)
+    
 
     time.sleep(5)
 
-    indeed_job_title_xpath = '//*[@id="JobTitle"]'
-    indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
-    indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_xpath = '//*[@id="JobTitle"]'
+    #indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
+    #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    
+    browser.find_element_by_id('JobTitle').send_keys(data[i]['fields']['Position Name']);
 
-    time.sleep(2)
+    #time.sleep(2)
 
     indeed_loc_xpath = '//*[@id="cityOrPostalCode"]'
     indeed_loc_xpath_click = browser.find_element_by_xpath(indeed_loc_xpath)
@@ -183,5 +201,5 @@ for i in range(len(data)):
     time.sleep(5)
 
     browser.close()
-
+#display.stop()
 print("Indeed Auto-Post Done Successfully")
