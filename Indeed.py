@@ -32,7 +32,7 @@ for i in range(len(copy_data)):
 for i in range(len(data)):
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389 Safari/537.36"
     options = webdriver.ChromeOptions()
-    options.headless = True
+    options.headless = False
     options.add_argument(f'user-agent={user_agent}')
     options.add_argument("--window-size=1900,1040")
     options.add_argument("--allow-insecure-localhost")
