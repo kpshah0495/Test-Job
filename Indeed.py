@@ -34,7 +34,8 @@ for i in range(len(data)):
     options = webdriver.ChromeOptions()
     options.headless = True
     options.add_argument(f'user-agent={user_agent}')
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--window-size=1900,1040")
+    options.add_argument("--allow-insecure-localhost")
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--allow-running-insecure-content')
     options.add_argument("--disable-extensions")
@@ -68,15 +69,23 @@ for i in range(len(data)):
     time.sleep(5)
     
     browser.find_element_by_xpath('//*[@id="postJobButton"]').click()
-    handles = browser.window_handles
-    print(handles)
+    
+#     handles = browser.window_handles
+#     print(handles)
     
 
-    time.sleep(20)
+    time.sleep(5)
+    
+    #browser.save_screenshot("sample.png")
 
-    indeed_job_title_xpath = '//*[@id="JobTitle"]'
-    indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
-    indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div[3]/div[1]/div[3]/div[3]/div/div/div/div/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/div/div/div/div[2]/input'
+    #indeed_job_title_click = browser.find_element_by_xpath(indeed_job_title_xpath)
+    #e = browser.find_element_by_css_selector('input.JobTitle')
+    #e.send_keys(data[i]['fields']['Position Name']);
+    #indeed_job_title_click.send_keys(data[i]['fields']['Position Name']);
+    
+    element = W(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="JobTitle"]')))
+    element.send_keys(data[i]['fields']['Position Name']);
     
     #browser.find_element_by_xpath('//*[@id="plugin_container_CoreFunnel_JobTitleContainer"]/div/div/div/div/div/div/div/div[2]').send_keys(data[i]['fields']['Position Name']);
 
